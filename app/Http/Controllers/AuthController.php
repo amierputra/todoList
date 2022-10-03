@@ -60,14 +60,6 @@ class AuthController extends Controller
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
 
-    public function mainpage()
-    {
-        if (Auth::check()) {
-            return view('welcome', ['listItems' => ListItem::where('is_complete', 0)->where('email', Auth::user()->email)->get()]);
-        }
-        return redirect("login")->withSuccess('You do not have access');
-    }
-
     public function logout()
     {
         Session::flush();

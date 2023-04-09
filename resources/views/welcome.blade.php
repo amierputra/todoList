@@ -40,7 +40,7 @@
                         <td>
                             <div class="row">
                                 <div class="col">
-                                    <form method="post" action="{{ route('markComplete',$listItem->id) }}" accept-charset="UTF-8" onsubmit="return confirm('Completed?');">
+                                    <form method="post" action="{{ route('markComplete', $listItem->id) }}" accept-charset="UTF-8" onsubmit="return confirm('Completed?');">
                                         {{csrf_field()}}
                                         <button class="btn text-success rounded-circle" type="submit">
                                             <i class="fa fa-check"></i></button>
@@ -115,12 +115,14 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
+                @foreach ($listItems as $listItem)
                     <form method="post" action="{{route('markUpdate',$listItem->id)}}" accept-charset="UTF-8">
                         {{csrf_field()}}
                         <p><input class="form-control px-3" type="text" name="updateItem" placeholder="To do item" required value="{{ $listItem->name }}"></p>
                         <p><textarea class="form-control px-3" name="updateDesc" rows="4" cols="50" placeholder="To do description">{{ $listItem->description }}</textarea></p>
                         <button type="submit" class="btn btn-info">Update</button>
                     </form>
+                @endforeach
                 </div>
 
                 <!-- Modal footer -->
